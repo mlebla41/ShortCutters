@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour {
         {
             rangeBoards = true;
             Debug.Log("in range");
+            if (other.CompareTag("BoardBridge") && placed)
+            {
+                other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                other.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D other)
