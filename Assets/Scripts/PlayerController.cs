@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,8 +10,12 @@ public class PlayerController : MonoBehaviour {
     private string Inventory;
     private bool rangeBoards = false;
     private bool placedBoards = false;
+    private bool placedZipline = false;
     public GameObject boardBridge;
-    private bool placed = false;
+    private Collider2D col;
+    private bool leverPulled;
+    private bool leverRange;
+    private bool rangeZipline;
 
 
     void start()
@@ -25,7 +30,30 @@ public class PlayerController : MonoBehaviour {
         if (rangeBoards && Input.GetMouseButtonDown(0) && Inventory == "WoodenBoardPickup")
         {
             Debug.Log("Placed boards!");
-            placed = true;
+            placedBoards = true;
+            col.GetComponentInChildren<BoxCollider2D>().enabled = false;
+            col.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        if (!rangeBoards && placedBoards)
+        {
+            Debug.Log("removed boards!");
+            placedBoards = false;
+            col.GetComponentInChildren<BoxCollider2D>().enabled = true;
+            col.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (rangeZipline && Input.GetMouseButtonDown(0) && Inventory == "ZiplinePickup")
+        {
+            Debug.Log("Placed Zipline!");
+            placedZipline = true;
+            col.GetComponentInChildren<BoxCollider2D>().enabled = false;
+            col.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        if (!rangeZipline && placedZipline)
+        {
+            Debug.Log("removed Zipline!");
+            placedBoards = false;
+            col.GetComponentInChildren<BoxCollider2D>().enabled = true;
+            col.GetComponent<SpriteRenderer>().enabled = false;
         }
 
     }
@@ -36,16 +64,25 @@ public class PlayerController : MonoBehaviour {
         {
             Inventory = other.gameObject.name;
             Debug.Log("Your pickup is now: " + Inventory + " as a thing");
+
         }
         if (other.CompareTag("BoardBridge"))
         {
+            col = other;
             rangeBoards = true;
             Debug.Log("in range");
-            if (other.CompareTag("BoardBridge") && placed)
-            {
-                other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                other.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
+            
+        }
+        if (other.CompareTag("Zipline"))
+        {
+            col = other;
+            rangeZipline = true;
+            Debug.Log("in range");
+
+        }
+        if (other.CompareTag("Rough"))
+        {
+            speed = 1;
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -54,6 +91,15 @@ public class PlayerController : MonoBehaviour {
         {
             rangeBoards = false;
             Debug.Log("out of range");
+        }
+        if (other.CompareTag("Zipline"))
+        {
+            rangeZipline = false;
+            Debug.Log("out of range");
+        }
+        if (other.CompareTag("Rough"))
+        {
+            speed = 3;
         }
     }
 }
