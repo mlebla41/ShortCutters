@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/ShortcuttersGame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 87592addd9480d74aa13e0fbf9e75446
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 874a3b8fb302e394ea68fc1200558b65
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 69b9e7c743936fe43bc2ad892a8ca98f
   m_configObjects: {}

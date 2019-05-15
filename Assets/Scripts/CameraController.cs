@@ -8,11 +8,12 @@ public class CameraController : MonoBehaviour
     public GameObject player;
     private Vector3 offset;
     private float lorp;
+    public float lerpNum;
     
     void Start()
     {
         offset = transform.position - player.transform.position;
-        lorp = Mathf.Lerp(0, 3.2f, 0.2f);
+        lorp = Mathf.Lerp(0, lerpNum, 0.2f);
     }
     
     void LateUpdate()
