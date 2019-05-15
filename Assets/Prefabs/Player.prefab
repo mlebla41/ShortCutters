@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384667226805282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.54, y: 0.469, z: 0}
-  m_LocalScale: {x: 0.07520986, y: 0.07520986, z: 0.07520986}
+  m_LocalPosition: {x: -5.512, y: 1.507, z: 0}
+  m_LocalScale: {x: 0.83573204, y: 0.83573204, z: 0.83573204}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,9 +75,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0005819861, y: 0}
+  m_Offset: {x: 0.005188408, y: -0.1433656}
   serializedVersion: 2
-  m_Radius: 1.9743708
+  m_Radius: 0.2496498
 --- !u!114 &114915943471887914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +93,9 @@ MonoBehaviour:
   speed: 3
   boardBridge: {fileID: 1173534201600180, guid: 345ca179cb839ec48882c87b4a520148,
     type: 2}
+  InventoryBoards: {fileID: 0}
+  InventoryZipline: {fileID: 0}
+  InventoryEmpty: {fileID: 0}
 --- !u!212 &212613105555724546
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -127,7 +130,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: cd5f7cbd00a52474b9cdc3d43cd719b4, type: 3}
   m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_FlipX: 0

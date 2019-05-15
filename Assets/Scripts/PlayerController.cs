@@ -16,10 +16,16 @@ public class PlayerController : MonoBehaviour {
     private bool leverPulled;
     private bool leverRange;
     private bool rangeZipline;
+    public Image InventoryBoards;
+    public Image InventoryZipline;
+    public Image InventoryEmpty;
 
 
     void start()
     {
+        InventoryBoards.enabled = false;
+        InventoryEmpty.enabled = true;
+        InventoryZipline.enabled = false;
     }
 	void Update () {
 
@@ -47,6 +53,7 @@ public class PlayerController : MonoBehaviour {
             placedZipline = true;
             col.GetComponentInChildren<BoxCollider2D>().enabled = false;
             col.GetComponent<SpriteRenderer>().enabled = true;
+            Debug.Log("idk");
         }
         if (!rangeZipline && placedZipline)
         {
@@ -54,6 +61,22 @@ public class PlayerController : MonoBehaviour {
             placedBoards = false;
             col.GetComponentInChildren<BoxCollider2D>().enabled = true;
             col.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (Inventory == "ZiplinePickup")
+        {
+            InventoryBoards.enabled = false;
+            InventoryEmpty.enabled = false;
+            InventoryZipline.enabled = true;
+        }
+        if (Inventory == "WoodenBoardPickup")
+        {
+            InventoryBoards.enabled = true;
+            InventoryEmpty.enabled = false;
+            InventoryZipline.enabled = false;
+        }
+        if (Inventory != "ZiplinePickup" && Inventory != "WoodenBoardPickup")
+        {
+            Inventory = "";
         }
 
     }
@@ -101,5 +124,9 @@ public class PlayerController : MonoBehaviour {
         {
             speed = 3;
         }
+    }
+    public void resetInv()
+    {
+        Inventory = "";
     }
 }

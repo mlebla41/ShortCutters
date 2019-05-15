@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 61532860960831716}
   - component: {fileID: 60561473326144088}
   - component: {fileID: 60736870277177152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202044070347870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.503, y: -6.499, z: 0}
+  m_LocalPosition: {x: 3.5, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4180512392947468}
@@ -97,14 +97,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.21705818, y: -0.053132545}
-      - {x: -0.4800396, y: -0.029011738}
-      - {x: -1.1198797, y: 0.011567105}
+    - - {x: 0.28432488, y: -0.10918857}
+      - {x: -0.49125075, y: -0.13551761}
+      - {x: -1.1479075, y: -0.12296678}
       - {x: -1.4428606, y: -0.24496175}
       - {x: -1.5203304, y: -0.48698902}
       - {x: 1.5134821, y: -0.4950018}
       - {x: 1.4547033, y: -0.27843046}
-      - {x: 1.2404671, y: 0.011567105}
+      - {x: 1.2853117, y: -0.033277523}
 --- !u!60 &60736870277177152
 PolygonCollider2D:
   m_ObjectHideFlags: 1
