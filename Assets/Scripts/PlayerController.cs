@@ -12,17 +12,24 @@ public class PlayerController : MonoBehaviour {
     private bool placedBoards = false;
     private bool placedZipline = false;
     public GameObject boardBridge;
-    private Collider2D col;
+    private Collider2D colBoardBridge;
+    private Collider2D colZipline;
     private bool leverPulled;
     private bool leverRange;
     private bool rangeZipline;
     public Image InventoryBoards;
     public Image InventoryZipline;
     public Image InventoryEmpty;
+    private AudioSource source;
+    public AudioClip boardsSound;
+    public AudioClip zipSound;
+
+    LevelController levelControl = new LevelController();
 
 
     void start()
     {
+        source = GetComponent<AudioSource>();
         InventoryBoards.enabled = false;
         InventoryEmpty.enabled = true;
         InventoryZipline.enabled = false;
@@ -37,30 +44,31 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("Placed boards!");
             placedBoards = true;
-            col.GetComponentInChildren<BoxCollider2D>().enabled = false;
-            col.GetComponent<SpriteRenderer>().enabled = true;
+            colBoardBridge.GetComponentInChildren<BoxCollider2D>().enabled = false;
+            colBoardBridge.GetComponent<SpriteRenderer>().enabled = true;
+            source.PlayOneShot(boardsSound, 5);
+
         }
         if (!rangeBoards && placedBoards)
         {
             Debug.Log("removed boards!");
             placedBoards = false;
-            col.GetComponentInChildren<BoxCollider2D>().enabled = true;
-            col.GetComponent<SpriteRenderer>().enabled = false;
+            colBoardBridge.GetComponentInChildren<BoxCollider2D>().enabled = true;
+            colBoardBridge.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (rangeZipline && Input.GetMouseButtonDown(0) && Inventory == "ZiplinePickup")
         {
             Debug.Log("Placed Zipline!");
             placedZipline = true;
-            col.GetComponentInChildren<BoxCollider2D>().enabled = false;
-            col.GetComponent<SpriteRenderer>().enabled = true;
-            Debug.Log("idk");
+            colZipline.GetComponentInChildren<BoxCollider2D>().enabled = false;
+            colZipline.GetComponent<SpriteRenderer>().enabled = true;
         }
         if (!rangeZipline && placedZipline)
         {
             Debug.Log("removed Zipline!");
             placedBoards = false;
-            col.GetComponentInChildren<BoxCollider2D>().enabled = true;
-            col.GetComponent<SpriteRenderer>().enabled = false;
+            colZipline.GetComponentInChildren<BoxCollider2D>().enabled = true;
+            colZipline.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (Inventory == "ZiplinePickup")
         {
@@ -73,10 +81,6 @@ public class PlayerController : MonoBehaviour {
             InventoryBoards.enabled = true;
             InventoryEmpty.enabled = false;
             InventoryZipline.enabled = false;
-        }
-        if (Inventory != "ZiplinePickup" && Inventory != "WoodenBoardPickup")
-        {
-            Inventory = "";
         }
 
     }
@@ -91,21 +95,25 @@ public class PlayerController : MonoBehaviour {
         }
         if (other.CompareTag("BoardBridge"))
         {
-            col = other;
+            colBoardBridge = other;
             rangeBoards = true;
             Debug.Log("in range");
             
         }
         if (other.CompareTag("Zipline"))
         {
-            col = other;
+            colZipline = other;
             rangeZipline = true;
             Debug.Log("in range");
 
         }
         if (other.CompareTag("Rough"))
         {
-            speed = 1;
+            speed = 1.5f;
+        }
+        if (other.CompareTag("Monster"))
+        {
+            levelControl.Respawn();
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -128,5 +136,6 @@ public class PlayerController : MonoBehaviour {
     public void resetInv()
     {
         Inventory = "";
+        Debug.Log("Inv reset");
     }
 }
